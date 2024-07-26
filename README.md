@@ -190,12 +190,25 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
+##### /*
+rlecoding.go
+description: run length encoding and decoding
+details:
+Run-length encoding (RLE) is a simple form of data compression in which runs of data are stored as a single data value and count, rather than as the original run. This is useful when the data contains many repeated values. For example, the data "WWWWWWWWWWWWBWWWWWWWWWWWWBBB" can be compressed to "12W1B12W3B". The algorithm is simple and can be implemented in a few lines of code.
+author(s) [ddaniel27](https://github.com/ddaniel27)
+ 
+
+---
 ##### Functions:
 
 1. [`HuffDecode`](./compression/huffmancoding.go#L104):  HuffDecode recursively decodes the binary code in, by traversing the Huffman compression tree pointed by root. current stores the current node of the traversing algorithm. out stores the current decoded string.
 2. [`HuffEncode`](./compression/huffmancoding.go#L93):  HuffEncode encodes the string in by applying the mapping defined by codes.
 3. [`HuffEncoding`](./compression/huffmancoding.go#L76):  HuffEncoding recursively traverses the Huffman tree pointed by node to obtain the map codes, that associates a rune with a slice of booleans. Each code is prefixed by prefix and left and right children are labelled with the booleans false and true, respectively.
 4. [`HuffTree`](./compression/huffmancoding.go#L33):  HuffTree returns the root Node of the Huffman tree by compressing listfreq. The compression produces the most optimal code lengths, provided listfreq is ordered, i.e.: listfreq[i] <= listfreq[j], whenever i < j.
+5. [`RLEdecode`](./compression/rlecoding.go#L34):  RLEdecode takes a run-length encoded string and returns the original string
+6. [`RLEdecodebytes`](./compression/rlecoding.go#L64):  RLEdecodebytes takes a run-length encoded byte slice and returns the original byte slice
+7. [`RLEncode`](./compression/rlecoding.go#L19):  RLEncode takes a string and returns its run-length encoding
+8. [`RLEncodebytes`](./compression/rlecoding.go#L47):  RLEncodebytes takes a byte slice and returns its run-length encoding as a byte slice
 
 ---
 ##### Types
@@ -289,7 +302,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  See https://leetcode.com/problems/unique-paths/ author: Rares Mateizer (https://github.com/rares985) filename: traprainwater.go description: Provides a function to calculate the amount of trapped rainwater between bars represented by an elevation map using dynamic programming. details: The TrapRainWater function calculates the amount of trapped rainwater between the bars represented by the given elevation map. It uses dynamic programming to precompute the maximum height of bars to the left and right of each position. Then, it iterates through the array to calculate the amount of trapped rainwater at each position based on the minimum of the left and right maximum heights. Finally, it sums up the trapped rainwater for all positions and returns the total amount. author(s) [TruongNhanNguyen (SOZEL)](https://github.com/TruongNhanNguyen) Package dynamic is a package of certain implementations of dynamically run algorithms.
+#####  filename: traprainwater.go description: Provides a function to calculate the amount of trapped rainwater between bars represented by an elevation map using dynamic programming. details: The TrapRainWater function calculates the amount of trapped rainwater between the bars represented by the given elevation map. It uses dynamic programming to precompute the maximum height of bars to the left and right of each position. Then, it iterates through the array to calculate the amount of trapped rainwater at each position based on the minimum of the left and right maximum heights. Finally, it sums up the trapped rainwater for all positions and returns the total amount. author(s) [TruongNhanNguyen (SOZEL)](https://github.com/TruongNhanNguyen) See https://leetcode.com/problems/unique-paths/ author: Rares Mateizer (https://github.com/rares985) Package dynamic is a package of certain implementations of dynamically run algorithms.
 
 ---
 ##### Functions:
@@ -529,8 +542,8 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`Make`](./structure/hashmap/hashmap.go#L32):  Make creates a new HashMap instance with input size and capacity
-2. [`New`](./structure/hashmap/hashmap.go#L24):  New return new HashMap instance
+1. [`DefaultNew`](./structure/hashmap/hashmap.go#L24):  DefaultNew returns a new HashMap instance with default values
+2. [`New`](./structure/hashmap/hashmap.go#L32):  New creates a new HashMap instance with the specified size and capacity
 
 ---
 ##### Types
@@ -914,6 +927,12 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
+#####  sieve2.go - Sieve of Eratosthenes
+ * Algorithm to generate prime numbers up to a limit
+ * Author: ddaniel27
+ 
+
+---
 ##### Functions:
 
 1. [`Factorize`](./math/prime/primefactorization.go#L5):  Factorize is a function that computes the exponents of each prime in the prime factorization of n
@@ -926,8 +945,9 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 8. [`MillerTestMultiple`](./math/prime/millerrabintest.go#L84):  MillerTestMultiple is like MillerTest but runs the test for multiple witnesses.
 9. [`OptimizedTrialDivision`](./math/prime/primecheck.go#L26):  OptimizedTrialDivision checks primality of an integer using an optimized trial division method. The optimizations include not checking divisibility by the even numbers and only checking up to the square root of the given number.
 10. [`Sieve`](./math/prime/sieve.go#L16):  Sieve Sieving the numbers that are not prime from the channel - basically removing them from the channels
-11. [`TrialDivision`](./math/prime/primecheck.go#L9):  TrialDivision tests whether a number is prime by trying to divide it by the numbers less than it.
-12. [`Twin`](./math/prime/twin.go#L15):  This function returns twin prime for given number returns (n + 2) if both n and (n + 2) are prime -1 otherwise
+11. [`SieveEratosthenes`](./math/prime/sieve2.go#L7): No description provided.
+12. [`TrialDivision`](./math/prime/primecheck.go#L9):  TrialDivision tests whether a number is prime by trying to divide it by the numbers less than it.
+13. [`Twin`](./math/prime/twin.go#L15):  This function returns twin prime for given number returns (n + 2) if both n and (n + 2) are prime -1 otherwise
 
 ---
 </details><details>
@@ -1000,7 +1020,12 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  Package rsa shows a simple implementation of RSA algorithm
+#####  Package rsa shows a simple implementation of RSA algorithm/*
+rsa2.go
+description: RSA encryption and decryption including key generation
+details: [RSA wiki](https://en.wikipedia.org/wiki/RSA_(cryptosystem))
+author(s): [ddaniel27](https://github.com/ddaniel27)
+ 
 
 ---
 ##### Functions:
@@ -1008,6 +1033,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 1. [`Decrypt`](./cipher/rsa/rsa.go#L43):  Decrypt decrypts encrypted rune slice based on the RSA algorithm
 2. [`Encrypt`](./cipher/rsa/rsa.go#L28):  Encrypt encrypts based on the RSA algorithm - uses modular exponentitation in math directory
 3. [`FuzzRsa`](./cipher/rsa/rsa_test.go#L79): No description provided.
+4. [`New`](./cipher/rsa/rsa2.go#L30):  New initializes the RSA algorithm returns the RSA object
 
 ---
 </details><details>
@@ -1068,7 +1094,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  Package sort a package for demonstrating sorting algorithms in Go
+#####  Package sort implements various sorting algorithms. Package sort a package for demonstrating sorting algorithms in Go
 
 ---
 ##### Functions:
@@ -1077,28 +1103,29 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 2. [`Bogo`](./sort/bogosort.go#L32): No description provided.
 3. [`Bubble`](./sort/bubblesort.go#L9):  Bubble is a simple generic definition of Bubble sort algorithm.
 4. [`Bucket`](./sort/bucketsort.go#L7):  Bucket sorts a slice. It is mainly useful when input is uniformly distributed over a range.
-5. [`Cocktail`](./sort/cocktailsort.go#L9):  Cocktail sort is a variation of bubble sort, operating in two directions (beginning to end, end to beginning)
-6. [`Comb`](./sort/combSort.go#L17):  Comb is a simple sorting algorithm which is an improvement of the bubble sorting algorithm.
-7. [`Count`](./sort/countingsort.go#L11): No description provided.
-8. [`Cycle`](./sort/cyclesort.go#L10):  Cycle sort is an in-place, unstable sorting algorithm that is particularly useful when sorting arrays containing elements with a small range of values. It is theoretically optimal in terms of the total number of writes to the original array.
-9. [`Exchange`](./sort/exchangesort.go#L8): No description provided.
-10. [`HeapSort`](./sort/heapsort.go#L116): No description provided.
-11. [`ImprovedSimple`](./sort/simplesort.go#L27):  ImprovedSimple is a improve SimpleSort by skipping an unnecessary comparison of the first and last. This improved version is more similar to implementation of insertion sort
-12. [`Insertion`](./sort/insertionsort.go#L5): No description provided.
-13. [`Merge`](./sort/mergesort.go#L41):  Merge Perform merge sort on a slice
-14. [`MergeIter`](./sort/mergesort.go#L55): No description provided.
-15. [`Pancake`](./sort/pancakesort.go#L8):  Pancake sorts a slice using flip operations, where flip refers to the idea of reversing the slice from index `0` to `i`.
-16. [`ParallelMerge`](./sort/mergesort.go#L66):  ParallelMerge Perform merge sort on a slice using goroutines
-17. [`Partition`](./sort/quicksort.go#L12): No description provided.
-18. [`Patience`](./sort/patiencesort.go#L13): No description provided.
-19. [`Pigeonhole`](./sort/pigeonholesort.go#L15):  Pigeonhole sorts a slice using pigeonhole sorting algorithm. NOTE: To maintain time complexity O(n + N), this is the reason for having only Integer constraint instead of Ordered.
-20. [`Quicksort`](./sort/quicksort.go#L39):  Quicksort Sorts the entire array
-21. [`QuicksortRange`](./sort/quicksort.go#L26):  QuicksortRange Sorts the specified range within the array
-22. [`RadixSort`](./sort/radixsort.go#L43): No description provided.
-23. [`Selection`](./sort/selectionsort.go#L5): No description provided.
-24. [`Shell`](./sort/shellsort.go#L5): No description provided.
-25. [`Simple`](./sort/simplesort.go#L13): No description provided.
-26. [`Timsort`](./sort/timsort.go#L13):  Timsort is a simple generic implementation of Timsort algorithm.
+5. [`Circle`](./sort/circlesort.go#L7):  Circle sorts an array using the circle sort algorithm.
+6. [`Cocktail`](./sort/cocktailsort.go#L9):  Cocktail sort is a variation of bubble sort, operating in two directions (beginning to end, end to beginning)
+7. [`Comb`](./sort/combSort.go#L17):  Comb is a simple sorting algorithm which is an improvement of the bubble sorting algorithm.
+8. [`Count`](./sort/countingsort.go#L11): No description provided.
+9. [`Cycle`](./sort/cyclesort.go#L10):  Cycle sort is an in-place, unstable sorting algorithm that is particularly useful when sorting arrays containing elements with a small range of values. It is theoretically optimal in terms of the total number of writes to the original array.
+10. [`Exchange`](./sort/exchangesort.go#L8): No description provided.
+11. [`HeapSort`](./sort/heapsort.go#L116): No description provided.
+12. [`ImprovedSimple`](./sort/simplesort.go#L27):  ImprovedSimple is a improve SimpleSort by skipping an unnecessary comparison of the first and last. This improved version is more similar to implementation of insertion sort
+13. [`Insertion`](./sort/insertionsort.go#L5): No description provided.
+14. [`Merge`](./sort/mergesort.go#L41):  Merge Perform merge sort on a slice
+15. [`MergeIter`](./sort/mergesort.go#L55): No description provided.
+16. [`Pancake`](./sort/pancakesort.go#L8):  Pancake sorts a slice using flip operations, where flip refers to the idea of reversing the slice from index `0` to `i`.
+17. [`ParallelMerge`](./sort/mergesort.go#L66):  ParallelMerge Perform merge sort on a slice using goroutines
+18. [`Partition`](./sort/quicksort.go#L12): No description provided.
+19. [`Patience`](./sort/patiencesort.go#L13): No description provided.
+20. [`Pigeonhole`](./sort/pigeonholesort.go#L15):  Pigeonhole sorts a slice using pigeonhole sorting algorithm. NOTE: To maintain time complexity O(n + N), this is the reason for having only Integer constraint instead of Ordered.
+21. [`Quicksort`](./sort/quicksort.go#L39):  Quicksort Sorts the entire array
+22. [`QuicksortRange`](./sort/quicksort.go#L26):  QuicksortRange Sorts the specified range within the array
+23. [`RadixSort`](./sort/radixsort.go#L43): No description provided.
+24. [`Selection`](./sort/selectionsort.go#L5): No description provided.
+25. [`Shell`](./sort/shellsort.go#L5): No description provided.
+26. [`Simple`](./sort/simplesort.go#L13): No description provided.
+27. [`Timsort`](./sort/timsort.go#L13):  Timsort is a simple generic implementation of Timsort algorithm.
 
 ---
 ##### Types
