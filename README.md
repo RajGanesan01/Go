@@ -148,6 +148,25 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> circularqueue </strong> </summary>	
+
+---
+
+#####  Package queue provides an implementation of a circular queue data structure.
+
+---
+##### Functions:
+
+1. [`NewCircularQueue`](./structure/circularqueue/circularqueuearray.go#L29):  NewCircularQueue creates a new CircularQueue with the given size. Returns an error if the size is less than or equal to 0.
+
+---
+##### Types
+
+1. [`CircularQueue`](./structure/circularqueue/circularqueuearray.go#L20): No description provided.
+
+
+---
+</details><details>
 	<summary> <strong> coloring </strong> </summary>	
 
 ---
@@ -241,8 +260,8 @@ author(s) [ddaniel27](https://github.com/ddaniel27)
 
 1. [`Base64Decode`](./conversion/base64.go#L57):  Base64Decode decodes the received input base64 string into a byte slice. The implementation follows the RFC4648 standard, which is documented at https://datatracker.ietf.org/doc/html/rfc4648#section-4
 2. [`Base64Encode`](./conversion/base64.go#L19):  Base64Encode encodes the received input bytes slice into a base64 string. The implementation follows the RFC4648 standard, which is documented at https://datatracker.ietf.org/doc/html/rfc4648#section-4
-3. [`BinaryToDecimal`](./conversion/binarytodecimal.go#L25):  BinaryToDecimal() function that will take Binary number as string, and return its Decimal equivalent as integer.
-4. [`DecimalToBinary`](./conversion/decimaltobinary.go#L32):  DecimalToBinary() function that will take Decimal number as int, and return its Binary equivalent as string.
+3. [`BinaryToDecimal`](./conversion/binarytodecimal.go#L25):  BinaryToDecimal() function that will take Binary number as string, and return its Decimal equivalent as an integer.
+4. [`DecimalToBinary`](./conversion/decimaltobinary.go#L32):  DecimalToBinary() function that will take Decimal number as int, and return its Binary equivalent as a string.
 5. [`FuzzBase64Encode`](./conversion/base64_test.go#L113): No description provided.
 6. [`HEXToRGB`](./conversion/rgbhex.go#L10):  HEXToRGB splits an RGB input (e.g. a color in hex format; 0x<color-code>) into the individual components: red, green and blue
 7. [`IntToRoman`](./conversion/inttoroman.go#L17):  IntToRoman converts an integer value to a roman numeral string. An error is returned if the integer is not between 1 and 3999.
@@ -302,7 +321,7 @@ author(s) [ddaniel27](https://github.com/ddaniel27)
 
 ---
 
-#####  filename: traprainwater.go description: Provides a function to calculate the amount of trapped rainwater between bars represented by an elevation map using dynamic programming. details: The TrapRainWater function calculates the amount of trapped rainwater between the bars represented by the given elevation map. It uses dynamic programming to precompute the maximum height of bars to the left and right of each position. Then, it iterates through the array to calculate the amount of trapped rainwater at each position based on the minimum of the left and right maximum heights. Finally, it sums up the trapped rainwater for all positions and returns the total amount. author(s) [TruongNhanNguyen (SOZEL)](https://github.com/TruongNhanNguyen) See https://leetcode.com/problems/unique-paths/ author: Rares Mateizer (https://github.com/rares985) Package dynamic is a package of certain implementations of dynamically run algorithms.
+#####  See https://leetcode.com/problems/unique-paths/ author: Rares Mateizer (https://github.com/rares985) Package dynamic is a package of certain implementations of dynamically run algorithms. filename: traprainwater.go description: Provides a function to calculate the amount of trapped rainwater between bars represented by an elevation map using dynamic programming. details: The TrapRainWater function calculates the amount of trapped rainwater between the bars represented by the given elevation map. It uses dynamic programming to precompute the maximum height of bars to the left and right of each position. Then, it iterates through the array to calculate the amount of trapped rainwater at each position based on the minimum of the left and right maximum heights. Finally, it sums up the trapped rainwater for all positions and returns the total amount. author(s) [TruongNhanNguyen (SOZEL)](https://github.com/TruongNhanNguyen)
 
 ---
 ##### Functions:
@@ -489,13 +508,14 @@ author(s) [ddaniel27](https://github.com/ddaniel27)
 6. [`FindPath`](./graph/edmondkarp.go#L16):  Returns a mapping of vertices as path, if there is any from source to sink Otherwise, returns nil
 7. [`FloydWarshall`](./graph/floydwarshall.go#L15):  FloydWarshall Returns all pair's shortest path using Floyd Warshall algorithm
 8. [`GetIdx`](./graph/depthfirstsearch.go#L3): No description provided.
-9. [`KruskalMST`](./graph/kruskal.go#L23): No description provided.
-10. [`LowestCommonAncestor`](./graph/lowestcommonancestor.go#L111):  For each node, we will precompute its ancestor above him, its ancestor two nodes above, its ancestor four nodes above, etc. Let's call `jump[j][u]` is the `2^j`-th ancestor above the node `u` with `u` in range `[0, numbersVertex)`, `j` in range `[0,MAXLOG)`. These information allow us to jump from any node to any ancestor above it in `O(MAXLOG)` time.
-11. [`New`](./graph/graph.go#L16):  Constructor functions for graphs (undirected by default)
-12. [`NewTree`](./graph/lowestcommonancestor.go#L84): No description provided.
-13. [`NewUnionFind`](./graph/unionfind.go#L24):  Initialise a new union find data structure with s nodes
-14. [`NotExist`](./graph/depthfirstsearch.go#L12): No description provided.
-15. [`Topological`](./graph/topological.go#L7):  Topological assumes that graph given is valid and that its possible to get a topological ordering. constraints are array of []int{a, b}, representing an edge going from a to b
+9. [`Kahn`](./graph/kahn.go#L15):  Kahn's algorithm computes a topological ordering of a directed acyclic graph (DAG). `n` is the number of vertices, `dependencies` is a list of directed edges, where each pair [a, b] represents a directed edge from a to b (i.e. b depends on a). Vertices are assumed to be labelled 0, 1, ..., n-1. If the graph is not a DAG, the function returns nil.
+10. [`KruskalMST`](./graph/kruskal.go#L23): No description provided.
+11. [`LowestCommonAncestor`](./graph/lowestcommonancestor.go#L111):  For each node, we will precompute its ancestor above him, its ancestor two nodes above, its ancestor four nodes above, etc. Let's call `jump[j][u]` is the `2^j`-th ancestor above the node `u` with `u` in range `[0, numbersVertex)`, `j` in range `[0,MAXLOG)`. These information allow us to jump from any node to any ancestor above it in `O(MAXLOG)` time.
+12. [`New`](./graph/graph.go#L16):  Constructor functions for graphs (undirected by default)
+13. [`NewTree`](./graph/lowestcommonancestor.go#L84): No description provided.
+14. [`NewUnionFind`](./graph/unionfind.go#L25):  Initialise a new union find data structure with s nodes
+15. [`NotExist`](./graph/depthfirstsearch.go#L12): No description provided.
+16. [`Topological`](./graph/topological.go#L7):  Topological assumes that graph given is valid and that its possible to get a topological ordering. constraints are array of []int{a, b}, representing an edge going from a to b
 
 ---
 ##### Types
@@ -512,7 +532,7 @@ author(s) [ddaniel27](https://github.com/ddaniel27)
 
 6. [`TreeEdge`](./graph/lowestcommonancestor.go#L12): No description provided.
 
-7. [`UnionFind`](./graph/unionfind.go#L18): No description provided.
+7. [`UnionFind`](./graph/unionfind.go#L19): No description provided.
 
 8. [`WeightedGraph`](./graph/floydwarshall.go#L9): No description provided.
 
